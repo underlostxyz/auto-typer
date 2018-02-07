@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+import subprocess
+import time
+import sys
+import argparse
+
+parser = argparse.ArgumentParser(description='Types a string character by character. Useful for inputting long strings of text into programs or consoles that don\'t allow copy and paste. Will wait 3 seconds before typing to allow you to alt-tab into the correct window.')
+parser.add_argument('text', type=str, help='Text you wish the auto-typer to input.')
+
+args = parser.parse_args()
+
+# 3 seconds to alt-tab to correct window after running
+time.sleep(3)
+
+for ch in args.text:
+    # type out the text
+    subprocess.call(["xdotool", "type", ch])
+    # increase or decrease the time below to type slower or faster
+    time.sleep(0.15)
